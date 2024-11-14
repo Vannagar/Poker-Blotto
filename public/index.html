@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Blotto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="join-controls">
+            <h1>Poker Blotto</h1>
+            <button id="join-player1">Join as Player 1</button>
+            <button id="join-player2">Join as Player 2</button>
+            <button id="join-spectator">Join as Spectator</button>
+        </div>
+
+        <div id="game-board" style="display: none;">
+            <div id="opponent-area">
+                <div id="opponent-hand" class="hand"></div>
+                <div id="opponent-piles" class="piles"></div>
+            </div>
+
+            <div id="middle-area">
+                <div id="deck" class="card deck">Deck</div>
+                <div id="exposed-card" class="card">No Card</div>
+                <div id="game-status"></div>
+            </div>
+
+            <div id="player-area">
+                <div id="player-piles" class="piles"></div>
+                <div id="player-hand" class="hand"></div>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
