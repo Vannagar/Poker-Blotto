@@ -4,7 +4,7 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const Hand = require('pokersolver').Hand;
 
-app.use(express.static('public'));
+app.use(express.static('public'));  
 
 // Game state
 let gameState = {

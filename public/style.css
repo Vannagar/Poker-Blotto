@@ -33,13 +33,14 @@ button:hover {
 
 #game-board {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
     padding: 20px;
 }
 
-#opponent-area, #player-area {
+#pile-area, #hand-area {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     gap: 20px;
 }
@@ -122,8 +123,9 @@ button:hover {
 .pile:hover .card:nth-child(4) { transform: translateY(130px); }
 .pile:hover .card:nth-child(5) { transform: translateY(180px); }
 
-#middle-area {
+#deck-area {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 30px;
