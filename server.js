@@ -80,6 +80,7 @@ function evaluateGame() {
         
         // Only evaluate if both piles have cards
         if (p1Pile.length > 0 && p2Pile.length > 0) {
+            console.log(p1Pile.map(card => formatCardForSolver(card)), p2Pile.map(card => formatCardForSolver(card)));
             const p1Hand = Hand.solve(p1Pile.map(card => formatCardForSolver(card)));
             const p2Hand = Hand.solve(p2Pile.map(card => formatCardForSolver(card)));
             
@@ -140,10 +141,10 @@ function formatCardForSolver(card) {
     };
     
     const suitMap = {
-        '♥': 'h',
-        '♦': 'd',
-        '♣': 'c',
-        '♠': 's'
+        'h': 'h',
+        'd': 'd',
+        'c': 'c',
+        's': 's'
     };
     
     return (valueMap[value] || value) + suitMap[suit];
@@ -194,6 +195,7 @@ io.on('connection', (socket) => {
         if (drawnCard) {
             gameState.players[player[0]].hand.push(drawnCard);
             gameState.hasDrawnCard = true;
+            console.log(gameState);
             io.emit('gameStateUpdate', { 
                 ...gameState, 
                 deckEmpty: gameState.deck.length === 0 && !gameState.exposedCard 
