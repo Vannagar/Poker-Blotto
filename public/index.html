@@ -8,14 +8,21 @@
 </head>
 <body>
     <div id="game-container">
-        <div id="join-controls">
+        <div id="game-list-view">
             <h1>Poker Blotto</h1>
-            <button id="join-player1">Join as Player 1</button>
-            <button id="join-player2">Join as Player 2</button>
-            <button id="join-spectator">Join as Spectator</button>
+            <div id="active-games">
+                <h2>Active Games</h2>
+                <div id="games-list"></div>
+                <button id="create-game">Create New Game</button>
+            </div>
         </div>
 
         <div id="game-board" style="display: none;">
+            <div class="game-header">
+                <h2 id="game-id"></h2>
+                <button id="leave-game">Leave Game</button>
+            </div>
+
             <div id="pile-area">
                 <div id="opponent-piles" class="piles"></div>
                 <div id="player-piles" class="piles"></div>

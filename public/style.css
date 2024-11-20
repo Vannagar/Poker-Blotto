@@ -1,9 +1,9 @@
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    font-family: Arial, sans-serif;
     background: #1a1a1a;
-    color: white;
+    color: #fff;
 }
 
 #game-container {
@@ -11,7 +11,7 @@ body {
     margin: 0 auto;
 }
 
-#join-controls {
+h1, h2 {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -22,8 +22,8 @@ button {
     font-size: 16px;
     cursor: pointer;
     background: #4CAF50;
-    border: none;
     color: white;
+    border: none;
     border-radius: 5px;
 }
 
@@ -31,11 +31,55 @@ button:hover {
     background: #45a049;
 }
 
+button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Game List Styles */
+#game-list-view {
+    padding: 20px;
+}
+
+#games-list {
+    margin: 20px 0;
+}
+
+.game-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.game-info {
+    flex-grow: 1;
+}
+
+.game-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Game Board Styles */
 #game-board {
     display: flex;
     flex-direction: row;
     gap: 20px;
     padding: 20px;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 #pile-area, #hand-area {
@@ -46,76 +90,58 @@ button:hover {
 }
 
 .hand {
-    display: grid;
-    grid-template-columns: repeat(3, 70px);
-    gap: 15px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    width: fit-content;
-    height: fit-content;
-    align-self: flex-end;
+    display: flex;
+    gap: 10px;
+    min-height: 120px;
 }
 
 .piles {
     display: flex;
-    gap: 20px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    min-height: 300px;
+    gap: 10px;
+    min-height: 200px;
 }
 
 .card {
-    width: 70px;
-    height: 100px;
+    width: 60px;
+    height: 90px;
     background: white;
     color: black;
-    border-radius: 8px;
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 24px;
-    position: relative;
+    font-size: 20px;
+    transition: transform 0.2s;
     user-select: none;
-    padding: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .card.red {
     color: red;
 }
 
-.card:hover {
+.card.selected {
+    box-shadow: 0 0 10px #4CAF50;
     transform: translateY(-5px);
-    transition: transform 0.2s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .pile {
     width: 70px;
-    min-height: 280px;
-    border: 2px dashed rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
+    min-height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding-top: 5px;
+    gap: 5px;
+    padding: 5px;
     position: relative;
 }
 
 .pile .card {
     position: absolute;
-    transition: transform 0.2s ease-out;
+    transition: transform 0.3s;
 }
-
-.pile .card:nth-child(1) { transform: translateY(0); }
-.pile .card:nth-child(2) { transform: translateY(45px); }
-.pile .card:nth-child(3) { transform: translateY(90px); }
-.pile .card:nth-child(4) { transform: translateY(135px); }
-.pile .card:nth-child(5) { transform: translateY(180px); }
 
 .pile:hover .card:nth-child(1) { transform: translateY(-20px); }
 .pile:hover .card:nth-child(2) { transform: translateY(30px); }
@@ -133,18 +159,50 @@ button:hover {
 }
 
 #game-status {
-    font-size: 20px;
-    color: #4CAF50;
     text-align: center;
-    margin: 10px 0;
+    font-size: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
 }
 
-.deck {
-    background: #2196F3;
-    color: white;
+/* Results Display */
+.results-display {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
 }
 
-#opponent-hand .card {
-    background: #2196F3;
-    color: white;
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.results-table th,
+.results-table td {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.winner-you { color: #4CAF50; }
+.winner-opponent { color: #f44336; }
+.winner-tie { color: #FFC107; }
+
+@media (max-width: 768px) {
+    #game-board {
+        flex-direction: column;
+    }
+    
+    .card {
+        width: 40px;
+        height: 60px;
+        font-size: 14px;
+    }
+    
+    .pile {
+        width: 50px;
+    }
 }
